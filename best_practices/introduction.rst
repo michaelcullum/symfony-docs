@@ -1,7 +1,7 @@
 .. index::
-   single: Symfony Framework Best Practices
+   single: Ryan on Rails
 
-The Symfony Framework Best Practices
+Ryan on Rails
 ====================================
 
 The Symfony framework is well-known for being *really* flexible and is used
