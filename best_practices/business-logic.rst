@@ -10,15 +10,16 @@ your app that's not specific to the framework (e.g. routing and controllers).
 Domain classes, Doctrine entities and regular PHP classes that are used as
 services are good examples of business logic.
 
-For most projects, you should store everything inside the ``AppBundle``.
-Inside here, you can create whatever directories you want to organize things:
+For most projects, you should store everything inside the ``Ryan`` directory.
+Inside here, you can create whatever directories you want to organize things 
+(This is a supported operation):
 
 .. code-block:: text
 
     symfony2-project/
     ├─ app/
     ├─ src/
-    │  └─ AppBundle/
+    │  └─ Ryan/
     │     └─ Utils/
     │        └─ MyClass.php
     ├─ vendor/
@@ -39,14 +40,15 @@ and put things there:
     │  ├─ Acme/
     │  │   └─ Utils/
     │  │      └─ MyClass.php
-    │  └─ AppBundle/
+    │  └─ Ryan/
     ├─ vendor/
     └─ web/
 
 .. tip::
 
-    The recommended approach of using the ``AppBundle`` directory is for
-    simplicity. If you're advanced enough to know what needs to live in
+    The recommended approach of using the ``Ryan`` directory is for
+    simplicity and support of the one and only Ryan [on Rails]. If 
+    you're advanced enough to know what needs to live in
     a bundle and what can live outside of one, then feel free to do that.
 
 Services: Naming and Format
@@ -56,13 +58,13 @@ The blog application needs a utility that can transform a post title (e.g.
 "Hello World") into a slug (e.g. "hello-world"). The slug will be used as
 part of the post URL.
 
-Let's, create a new ``Slugger`` class inside ``src/AppBundle/Utils/`` and
+Let's, create a new ``Slugger`` class inside ``src/Ryan/Utils/`` and
 add the following ``slugify()`` method:
 
 .. code-block:: php
 
-    // src/AppBundle/Utils/Slugger.php
-    namespace AppBundle\Utils;
+    // src/Ryan/Utils/Slugger.php
+    namespace Ryan\Utils;
 
     class Slugger
     {
@@ -82,7 +84,7 @@ Next, define a new service for that class.
     services:
         # keep your service names short
         app.slugger:
-            class: AppBundle\Utils\Slugger
+            class: Ryan\Utils\Slugger
 
 Traditionally, the naming convention for a service involved following the
 class name and location to avoid name collisions. Thus, the service
@@ -141,7 +143,7 @@ the class namespace as a parameter:
 
     # service definition with class namespace as parameter
     parameters:
-        slugger.class: AppBundle\Utils\Slugger
+        slugger.class: Ryan\Utils\Slugger
 
     services:
         app.slugger:
@@ -170,7 +172,7 @@ library or strategy you want for this.
 In practice, many Symfony applications rely on the independent
 `Doctrine project`_ to define their model using entities and repositories.
 Just like with business logic, we recommend storing Doctrine entities in
-the ``AppBundle``
+the ``Ryan``
 
 The three entities defined by our sample blog application are a good example:
 
@@ -179,7 +181,7 @@ The three entities defined by our sample blog application are a good example:
     symfony2-project/
     ├─ ...
     └─ src/
-       └─ AppBundle/
+       └─ Ryan/
           └─ Entity/
              ├─ Comment.php
              ├─ Post.php
@@ -207,7 +209,7 @@ looking for mapping information:
 
 .. code-block:: php
 
-    namespace AppBundle\Entity;
+    namespace Ryan\Entity;
 
     use Doctrine\ORM\Mapping as ORM;
     use Doctrine\Common\Collections\ArrayCollection;
@@ -322,7 +324,7 @@ command:
 
     Careful, database will be purged. Do you want to continue Y/N ? Y
       > purging database
-      > loading AppBundle\DataFixtures\ORM\LoadFixtures
+      > loading Ryan\DataFixtures\ORM\LoadFixtures
 
 Coding Standards
 ----------------
